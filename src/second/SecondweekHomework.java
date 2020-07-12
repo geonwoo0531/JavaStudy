@@ -7,8 +7,8 @@ import java.util.Random;
 public class SecondweekHomework {
 	public static void main(String[] args) {
 
-		int student_size = 6;	//학생수
-		int subject_size = 7;	//과목수
+		int student_size = 6; // 학생수
+		int subject_size = 7; // 과목수
 		Random rand = new Random();
 		String student[] = { "채송화", "이익준", "안정원", "김준완", "양석형", "한겨울" };
 		String str[] = { "국어", "영어", "수학", "사회", "과학", "HTML", "JAVA", "합계", "평균", "석차" };
@@ -21,7 +21,7 @@ public class SecondweekHomework {
 		// 6명의 7과목의 점수를 저장할 수 있는 변수 score를 선언
 		int[][] score = new int[6][7];
 
-		// score의 각방의 점수를 0~100점사이의 랜덤한 정수값으로 초기화, 사람별 합계, 사람별 평균
+		// score의 각방의 점수를 0~100점사이의 랜덤한 정수값으로 초기화
 		for (int i = 0; i < score.length; i++) {
 			for (int j = 0; j < score[i].length; j++) {
 				int randomscore = rand.nextInt(101);
@@ -47,22 +47,42 @@ public class SecondweekHomework {
 		for (int i = 0; i < student_size; i++) {
 			rank[i] = 1;// 모든 학생 석차 1로 초기화
 			for (int j = 0; j < student_size; j++) {
-				if(sum[i] < sum[j]) {
+				if (sum[i] < sum[j]) {
 					rank[i]++;
 				}
 			}
 		}
-		
+
 		// 성적별 sort-오름차순
 		for (int i = 0; i < student_size; i++) {
-            for (int j = i + 1; j < student_size; j++) {
-                if (rank[i] > rank[j]) {
-                    int temp = rank[i];
-                    rank[i] = rank[j];
-                    rank[j] = temp;
-                }
-            }
-        }
+			for (int j = i + 1; j < student_size; j++) {
+
+				if (rank[i] > rank[j]) {
+					String temp_student = student[i];
+					student[i] = student[j];
+					student[j] = temp_student;
+
+
+					for (int k = 0; k < subject_size; k++) {
+						int temp_score = score[i][k];
+						score[i][k] = score[j][k];
+						score[j][k] = temp_score;
+					}
+
+					int temp_sum = sum[i];
+					sum[i] = sum[j];
+					sum[j] = temp_sum;
+					
+					double temp_avg = avg[i];
+					avg[i] = avg[j];
+					avg[j] = temp_avg;
+
+					int temp_rank = rank[i];
+					rank[i] = rank[j];
+					rank[j] = temp_rank;
+				}
+			}
+		}
 
 		// 과목 및 합계, 평균 , 석차 console에 표시
 		for (int i = 0; i < str.length; i++) {
