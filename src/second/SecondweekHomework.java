@@ -62,7 +62,6 @@ public class SecondweekHomework {
 					student[i] = student[j];
 					student[j] = temp_student;
 
-
 					for (int k = 0; k < subject_size; k++) {
 						int temp_score = score[i][k];
 						score[i][k] = score[j][k];
@@ -72,7 +71,7 @@ public class SecondweekHomework {
 					int temp_sum = sum[i];
 					sum[i] = sum[j];
 					sum[j] = temp_sum;
-					
+
 					double temp_avg = avg[i];
 					avg[i] = avg[j];
 					avg[j] = temp_avg;
